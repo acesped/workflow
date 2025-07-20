@@ -1,28 +1,30 @@
-name: Ejecutar Notebook
+name: Ejecutar Notebook de Envío de Correo
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 1 * * *'  # 21:20 hora Chile
+    - cron: '0 10 * * *'  # Todos los días a las 10:00 UTC (7:00 Chile)
 
 jobs:
   run-notebook:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar el repositorio
-        uses: actions/checkout@v3
+      - name: 🧾 Checkout del repositorio
+        uses: actions/checkout@v4
 
-      - name: Configurar Python
-        uses: actions/setup-python@v3
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9.17'
 
-      - name: Instalar dependencias
+      - name: 📦 Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install papermill jupyter
+          pip install notebook nbconvert
 
-      - name: Ejecutar el notebook
+      - name: ▶️ Ejecutar notebook
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
-          papermill mi_script.ipynb output.ipynb
+          jupyter nbconvert --to notebook --execute notebooks/mi_script.ipynb --output output.ipynb
