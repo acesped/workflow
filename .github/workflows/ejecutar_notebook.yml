@@ -1,9 +1,9 @@
 name: Ejecutar Notebook
 
 on:
-  workflow_dispatch:  # permite ejecución manual desde la interfaz de GitHub
+  workflow_dispatch:
   schedule:
-    - cron: '20 1 * * *'  # se ejecuta todos los días a las 21:20 hora local Chile (01:20 UTC)
+    - cron: '20 1 * * *'  # 21:20 hora Chile
 
 jobs:
   run-notebook:
@@ -16,7 +16,7 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.9.17  # <-- aquí la versión corregida
+          python-version: '3.9.17'
 
       - name: Instalar dependencias
         run: |
@@ -25,4 +25,4 @@ jobs:
 
       - name: Ejecutar el notebook
         run: |
-          papermill notebooks/mi_script.ipynb notebooks/output.ipynb
+          papermill mi_script.ipynb output.ipynb
