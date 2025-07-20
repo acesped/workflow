@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.14
+          python-version: 3.9.17
       - run: python --version
