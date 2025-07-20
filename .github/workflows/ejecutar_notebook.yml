@@ -16,7 +16,7 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.10  # <-- aquí la versión corregida
+          python-version: 3.9.17  # <-- aquí la versión corregida
 
       - name: Instalar dependencias
         run: |
