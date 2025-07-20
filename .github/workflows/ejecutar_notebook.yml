@@ -25,4 +25,6 @@ jobs:
         run: pip install notebook nbconvert
 
       - name: Ejecutar notebook
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: jupyter nbconvert --to notebook --execute mi_script.ipynb --output output.ipynb
