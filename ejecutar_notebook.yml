@@ -25,4 +25,4 @@ jobs:
 
       - name: Ejecutar el notebook
         run: |
-          papermill script.ipynb output.ipynb
+          papermill notebooks/mi_script.ipynb notebooks/output.ipynb
